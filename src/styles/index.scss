@@ -12,7 +12,7 @@
 }
 
 .spacing {
-  @apply w-full max-w-7xl px-5 mx-auto;
+  @apply w-full max-w-[1600px] px-5 lg:px-10 mx-auto;
 }
 
 .hidden-input {

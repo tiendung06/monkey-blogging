@@ -16,10 +16,10 @@ const menuLinks = [
 
 const Header = () => {
   const { userInfo } = useAuth();
-  console.log(userInfo);
+
   return (
     <header className="flex items-center py-5">
-      <div className="w-full px-5 xl:px-10">
+      <div className="spacing">
         <div className="flex items-center justify-between gap-5">
           <div className="flex items-center justify-between gap-5 lg:gap-10">
             <NavLink to="/">
