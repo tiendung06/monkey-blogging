@@ -14,7 +14,7 @@ const Button = ({
   const child = !!isLoading ? <LoadingSpinner /> : children;
 
   let defaultClassName =
-    " flex items-center justify-center h-16 px-6 font-semibold rounded-lg cursor-pointer " +
+    " flex items-center justify-center h-12 lg:h-14 px-6 font-semibold rounded-lg cursor-pointer " +
     className;
   switch (kind) {
     case "primary":
