@@ -3,6 +3,7 @@ import { lazy, Suspense } from "react";
 import { AuthProvider } from "./contexts/auth-context";
 
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
+const SignInPage = lazy(() => import("./pages/SignInPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/sign-up" element={<SignUpPage />}></Route>
+            <Route path="/sign-in" element={<SignInPage />}></Route>
           </Routes>
         </Suspense>
       </AuthProvider>
