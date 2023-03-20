@@ -5,7 +5,7 @@ import IconDashboard from "../../components/icon/IconDashboard";
 import IconCategory from "../../components/icon/IconCategory";
 import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebase-config";
 
 const sidebarLinks = [
@@ -29,52 +29,55 @@ const sidebarLinks = [
     url: "/manage/user",
     icon: <IconUser />,
   },
-  {
-    title: "Logout",
-    url: "/",
-    icon: <IconLogout />,
-    onClick: () => {
-      signOut(auth)
-        .then(() => toast.success("Sign out success!"))
-        .catch(() => toast.error("Sign out fail!"));
-    },
-  },
 ];
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        toast.success("Sign out success!");
+        navigate("/");
+      })
+      .catch(() => toast.error("Sign out fail!"));
+  };
+
   return (
-    <div className="flex justify-between gap-8 flex-row min-w-full p-3 lg:min-w-0 lg:flex-col lg:px-4 lg:py-10 bg-white h-full rounded-xl shadow-[10px_10px_20px_rgba(218,213,213,0.15)]">
+    <div className="flex justify-between gap-8 flex-row min-w-full text-gray80 p-3 lg:min-w-0 lg:flex-col lg:px-4 lg:py-10 bg-white h-full rounded-xl shadow-[10px_10px_20px_rgba(218,213,213,0.15)]">
       {sidebarLinks.map((link) => {
-        if (link.onClick)
-          return (
-            <div
-              onClick={link.onClick}
-              key={link.title}
-              className="w-12 h-12 gap-5 font-medium transition-all cursor-pointer center text-gray80 hover:text-red-500"
-            >
-              <span title={link.title}>{link.icon}</span>
-            </div>
-          );
         return (
           <NavLink
+            key={link.title}
             to={link.url}
             className={({ isActive }) =>
-              isActive
-                ? "text-primary bg-[#F1FBF7] block rounded-xl"
-                : "text-gray80"
+              isActive ? "text-primary bg-[#F1FBF7] block rounded-xl" : ""
             }
-            key={link.title}
           >
-            <span
-              className="w-12 h-12 font-medium transition-all cursor-pointer center hover:text-primary"
-              title={link.title}
-            >
-              {link.icon}
-            </span>
+            <LinkItem title={link.title}>{link.icon}</LinkItem>
           </NavLink>
         );
       })}
+      <LinkItem
+        title="Log out"
+        className="hover:text-red-500"
+        onClick={handleSignOut}
+      >
+        <IconLogout />
+      </LinkItem>
     </div>
+  );
+};
+
+const LinkItem = ({ children, title, className, ...props }) => {
+  return (
+    <span
+      title={title}
+      className={`${className} block w-12 h-12 font-medium transition-all cursor-pointer center hover:text-primary`}
+      {...props}
+    >
+      {children}
+    </span>
   );
 };
 

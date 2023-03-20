@@ -43,7 +43,7 @@ const SignInPage = () => {
     try {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       toast.success("Login successfully!");
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       if (error.message.includes("wrong-password"))
         toast.error("It seems your password was wrong");

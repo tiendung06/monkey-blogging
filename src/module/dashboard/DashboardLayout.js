@@ -10,7 +10,7 @@ const DashBoardLayout = () => {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate("/");
+      navigate("/sign-in");
     }
   }, [userInfo, navigate]);
 
