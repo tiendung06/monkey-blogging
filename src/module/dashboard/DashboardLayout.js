@@ -17,9 +17,9 @@ const DashBoardLayout = () => {
   return (
     <div className="flex flex-col w-full min-h-screen mx-auto">
       <DashboardHeader />
-      <div className="flex items-start flex-1 h-full gap-10 pb-10 lg:py-10 spacing">
+      <div className="flex flex-col items-start flex-1 h-full gap-10 pb-10 lg:flex-row lg:py-10 spacing">
         <Sidebar />
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <Outlet></Outlet>
         </div>
       </div>

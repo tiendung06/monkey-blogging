@@ -10,6 +10,7 @@ const DashboardLayout = lazy(() =>
   import("./module/dashboard/DashboardLayout")
 );
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
+const UserProfile = lazy(() => import("./module/user/UserProfile"));
 
 function App() {
   return (
@@ -17,12 +18,13 @@ function App() {
       <AuthProvider>
         <Suspense>
           <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/sign-up" element={<SignUpPage />}></Route>
-            <Route path="/sign-in" element={<SignInPage />}></Route>
-            <Route path="*" element={<PageNotFound />}></Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/sign-in" element={<SignInPage />} />
+            <Route path="*" element={<PageNotFound />} />
             <Route element={<DashboardLayout />}>
-              <Route path="/dashboard" element={<DashboardPage />}></Route>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/profile" element={<UserProfile />} />
             </Route>
           </Routes>
         </Suspense>
