@@ -3,6 +3,7 @@ import IconPost from "../../components/icon/IconPost";
 import IconLogout from "../../components/icon/IconLogout";
 import IconDashboard from "../../components/icon/IconDashboard";
 import IconCategory from "../../components/icon/IconCategory";
+import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
 import { NavLink } from "react-router-dom";
 import { auth } from "../../firebase/firebase-config";
@@ -32,20 +33,24 @@ const sidebarLinks = [
     title: "Logout",
     url: "/",
     icon: <IconLogout />,
-    onClick: () => signOut(auth),
+    onClick: () => {
+      signOut(auth)
+        .then(() => toast.success("Sign out success!"))
+        .catch(() => toast.error("Sign out fail!"));
+    },
   },
 ];
 
 const Sidebar = () => {
   return (
-    <div className="flex gap-8 flex-row justify-between min-w-full p-3 lg:min-w-0 lg:flex-col lg:px-4 lg:py-10 bg-white h-full rounded-xl shadow-[10px_10px_20px_rgba(218,213,213,0.15)]">
+    <div className="flex justify-between gap-8 flex-row min-w-full p-3 lg:min-w-0 lg:flex-col lg:px-4 lg:py-10 bg-white h-full rounded-xl shadow-[10px_10px_20px_rgba(218,213,213,0.15)]">
       {sidebarLinks.map((link) => {
         if (link.onClick)
           return (
             <div
               onClick={link.onClick}
               key={link.title}
-              className="flex items-center justify-center w-12 h-12 gap-5 font-medium transition-all cursor-pointer text-gray80 hover:text-red-500"
+              className="w-12 h-12 gap-5 font-medium transition-all cursor-pointer center text-gray80 hover:text-red-500"
             >
               <span title={link.title}>{link.icon}</span>
             </div>
@@ -61,7 +66,7 @@ const Sidebar = () => {
             key={link.title}
           >
             <span
-              className="flex items-center justify-center w-12 h-12 font-medium transition-all cursor-pointer hover:text-primary"
+              className="w-12 h-12 font-medium transition-all cursor-pointer center hover:text-primary"
               title={link.title}
             >
               {link.icon}

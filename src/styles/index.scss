@@ -15,6 +15,10 @@
   @apply w-full max-w-[1600px] px-5 lg:px-10 mx-auto;
 }
 
+.center {
+  @apply flex items-center justify-center;
+}
+
 .hidden-input {
   @apply w-[1px] h-[1px] m-[-1px] p-0 overflow-hidden absolute whitespace-nowrap border-none;
   clip: rect(0 0 0 0);

@@ -2,7 +2,7 @@ import Button from "../components/button/Button";
 
 const PageNotFound = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen px-5 text-white bg-black lg:px-10">
+    <div className="min-h-screen px-5 text-white bg-black center lg:px-10">
       <div className="flex flex-col items-center justify-between max-w-5xl text-center">
         <img
           src="/404.png"
