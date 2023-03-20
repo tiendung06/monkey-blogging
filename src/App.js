@@ -11,6 +11,9 @@ const DashboardLayout = lazy(() =>
 );
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
 const PostAddNew = lazy(() => import("./module/post/PostAddNew"));
+const CategoryManage = lazy(() => import("./module/category/CategoryManage"));
+const CategoryAddNew = lazy(() => import("./module/category/CategoryAddNew"));
+const CategoryUpdate = lazy(() => import("./module/category/CategoryUpdate"));
 const UserProfile = lazy(() => import("./module/user/UserProfile"));
 
 function App() {
@@ -27,6 +30,12 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/manage/add-post" element={<PostAddNew />} />
               <Route path="/profile" element={<UserProfile />} />
+              <Route path="/manage/category" element={<CategoryManage />} />
+              <Route path="/manage/add-category" element={<CategoryAddNew />} />
+              <Route
+                path="/manage/update-category"
+                element={<CategoryUpdate />}
+              />
             </Route>
           </Routes>
         </Suspense>
