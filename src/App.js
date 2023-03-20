@@ -10,6 +10,7 @@ const DashboardLayout = lazy(() =>
   import("./module/dashboard/DashboardLayout")
 );
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
+const PostAddNew = lazy(() => import("./module/post/PostAddNew"));
 const UserProfile = lazy(() => import("./module/user/UserProfile"));
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/manage/add-post" element={<PostAddNew />} />
               <Route path="/profile" element={<UserProfile />} />
             </Route>
           </Routes>
