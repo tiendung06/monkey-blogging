@@ -23,3 +23,20 @@
   @apply w-[1px] h-[1px] m-[-1px] p-0 overflow-hidden absolute whitespace-nowrap border-none;
   clip: rect(0 0 0 0);
 }
+
+table {
+  @apply w-full;
+  thead {
+    @apply bg-[#f7f7f8];
+  }
+  th,
+  td {
+    @apply align-middle whitespace-nowrap;
+  }
+  th {
+    @apply px-8 py-5 text-left;
+  }
+  td {
+    @apply px-8 py-4;
+  }
+}
