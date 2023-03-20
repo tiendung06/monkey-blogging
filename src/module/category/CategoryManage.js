@@ -175,7 +175,6 @@ const CategoryManage = () => {
           <Button onClick={handleLoadMoreCategory} className="mx-auto">
             Load more
           </Button>
-          {total}
         </div>
       )}
     </div>
