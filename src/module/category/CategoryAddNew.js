@@ -8,10 +8,9 @@ import DashboardHeading from "../../module/dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-
+import { db } from "../../firebase/firebase-config";
 import { categoryStatus } from "../../utils/constants";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../../firebase/firebase-config";
 
 const CategoryAddNew = () => {
   const {
@@ -21,7 +20,7 @@ const CategoryAddNew = () => {
     reset,
     formState: { isValid, isSubmitting },
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {
       name: "",
       slug: "",
@@ -32,12 +31,15 @@ const CategoryAddNew = () => {
 
   const handleAddNewCategory = async (values) => {
     if (!isValid) return;
+
     const newValues = { ...values };
     newValues.slug = slugify(newValues.name || newValues.slug, {
       lower: true,
     });
+
     newValues.status = Number(newValues.status);
     const colRef = collection(db, "categories");
+
     try {
       await addDoc(colRef, {
         ...newValues,
@@ -55,7 +57,9 @@ const CategoryAddNew = () => {
       });
     }
   };
+
   const watchStatus = watch("status");
+
   return (
     <div>
       <DashboardHeading title="New category" desc="Add new category" />

@@ -31,7 +31,7 @@ const SignInPage = () => {
     control,
     formState: { isValid, isSubmitting, errors },
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     resolver: yupResolver(schema),
   });
 

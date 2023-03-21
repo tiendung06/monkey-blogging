@@ -26,7 +26,7 @@ const UserUpdate = () => {
     setValue,
     formState: { isValid, isSubmitting },
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
   });
 
   const [params] = useSearchParams();

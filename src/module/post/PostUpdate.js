@@ -46,12 +46,13 @@ const PostUpdate = () => {
     getValues,
     formState: { isValid, isSubmitting },
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
   });
   const imageUrl = getValues("image");
   const imageName = getValues("image_name");
   const { image, setImage, progress, handleSelectImage, handleDeleteImage } =
     useFirebaseImage(setValue, getValues, imageName, deletePostImage);
+
   async function deletePostImage() {
     const colRef = doc(db, "users", postId);
     await updateDoc(colRef, {

@@ -30,7 +30,7 @@ import { db } from "../../firebase/firebase-config";
 const PostAddNew = () => {
   const { userInfo } = useAuth();
   const { control, watch, setValue, handleSubmit, getValues, reset } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {
       title: "",
       slug: "",

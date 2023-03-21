@@ -21,12 +21,14 @@ const CategoryUpdate = () => {
     handleSubmit,
     formState: { isSubmitting },
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {},
   });
+
   const [params] = useSearchParams();
   const categoryId = params.get("id");
   const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchData() {
       const colRef = doc(db, "categories", categoryId);
@@ -35,7 +37,9 @@ const CategoryUpdate = () => {
     }
     fetchData();
   }, [categoryId, reset]);
+
   const watchStatus = watch("status");
+
   const handleUpdateCategory = async (values) => {
     const colRef = doc(db, "categories", categoryId);
     await updateDoc(colRef, {
@@ -46,7 +50,9 @@ const CategoryUpdate = () => {
     toast.success("Update category successfully!");
     navigate("/manage/category");
   };
+
   if (!categoryId) return null;
+
   return (
     <div>
       <DashboardHeading

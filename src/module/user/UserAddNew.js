@@ -25,7 +25,7 @@ const UserAddNew = () => {
     formState: { isValid, isSubmitting },
     reset,
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {
       fullname: "",
       email: "",

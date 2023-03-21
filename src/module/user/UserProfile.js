@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 const UserProfile = () => {
   const { control } = useForm({
-    mode: "onChange",
+    mode: "onSubmit",
   });
 
   return (
