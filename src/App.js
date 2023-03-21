@@ -10,6 +10,8 @@ const DashboardLayout = lazy(() =>
   import("./module/dashboard/DashboardLayout")
 );
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
+const PostDetailsPage = lazy(() => import("./pages/PostDetailsPage"));
+const PostManage = lazy(() => import("./module/post/PostManage"));
 const PostAddNew = lazy(() => import("./module/post/PostAddNew"));
 const PostUpdate = lazy(() => import("./module/post/PostUpdate"));
 const CategoryManage = lazy(() => import("./module/category/CategoryManage"));
@@ -29,11 +31,10 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/:slug" element={<PostDetailsPage />} />
+              <Route path="/manage/posts" element={<PostManage />} />
               <Route path="/manage/add-post" element={<PostAddNew />} />
-              <Route
-                path="/manage/update-post"
-                element={<PostUpdate></PostUpdate>}
-              />
+              <Route path="/manage/update-post" element={<PostUpdate />} />
               <Route path="/profile" element={<UserProfile />} />
               <Route path="/manage/category" element={<CategoryManage />} />
               <Route path="/manage/add-category" element={<CategoryAddNew />} />
