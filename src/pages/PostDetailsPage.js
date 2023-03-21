@@ -55,7 +55,7 @@ const PostDetailsPage = () => {
           url={postInfo.image}
           className="w-full max-w-2xl lg:h-[460px] rounded-3xl h-auto"
         />
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <PostCategory className="mb-6" to={postInfo.category?.slug}>
             {postInfo.category?.name}
           </PostCategory>
