@@ -6,7 +6,7 @@ import { formatDate } from "../../helper";
 
 const PostNewestItem = ({ data }) => {
   if (!data.id) return null;
-  console.log(data);
+
   return (
     <div className="flex items-center gap-5 mb-4 pb-4 lg:mb-7 lg:pb-7 border border-[#ddd] last:p-0 last:m-0 last:border-0">
       <PostImage

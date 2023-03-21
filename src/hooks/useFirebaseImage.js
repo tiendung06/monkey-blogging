@@ -39,7 +39,7 @@ export default function useFirebaseImage(
         }
       },
       (error) => {
-        console.log("Error");
+        console.log("Error", error);
         setImage("");
       },
       () => {
