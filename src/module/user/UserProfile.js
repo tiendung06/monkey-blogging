@@ -5,11 +5,16 @@ import Field from "../../components/field/Field";
 import DashboardHeading from "../dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const UserProfile = () => {
   const { control } = useForm({
     mode: "onSubmit",
   });
+
+  useEffect(() => {
+    document.title = "User Profile";
+  }, []);
 
   return (
     <div>

@@ -121,6 +121,10 @@ const PostManage = () => {
     setLastDoc(lastVisible);
   };
 
+  useEffect(() => {
+    document.title = "Post Manage";
+  }, []);
+
   return (
     <div>
       <DashboardHeading title="All posts" desc="Manage all posts" />

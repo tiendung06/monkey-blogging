@@ -51,6 +51,10 @@ const CategoryUpdate = () => {
     navigate("/manage/category");
   };
 
+  useEffect(() => {
+    document.title = "Update Category";
+  }, []);
+
   if (!categoryId) return null;
 
   return (

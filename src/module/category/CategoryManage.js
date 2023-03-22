@@ -108,6 +108,10 @@ const CategoryManage = () => {
     setFilter(e.target.value);
   }, 500);
 
+  useEffect(() => {
+    document.title = "Category Manage";
+  }, []);
+
   return (
     <div>
       <DashboardHeading title="Categories" desc="Manage your category">

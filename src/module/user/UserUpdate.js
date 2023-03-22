@@ -76,6 +76,10 @@ const UserUpdate = () => {
     fetchData();
   }, [userId, reset]);
 
+  useEffect(() => {
+    document.title = "Update User";
+  }, []);
+
   if (!userId) return null;
 
   return (

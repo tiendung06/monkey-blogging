@@ -7,6 +7,7 @@ import Field from "../../components/field/Field";
 import DashboardHeading from "../../module/dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { db } from "../../firebase/firebase-config";
 import { categoryStatus } from "../../utils/constants";
@@ -59,6 +60,10 @@ const CategoryAddNew = () => {
   };
 
   const watchStatus = watch("status");
+
+  useEffect(() => {
+    document.title = "Add new category";
+  }, []);
 
   return (
     <div>

@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useEffect } from "react";
 
 const UserAddNew = () => {
   const {
@@ -86,6 +87,10 @@ const UserAddNew = () => {
 
   const watchStatus = watch("status");
   const watchRole = watch("role");
+
+  useEffect(() => {
+    document.title = "Add New User";
+  }, []);
 
   return (
     <div>

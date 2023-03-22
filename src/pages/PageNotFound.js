@@ -1,6 +1,11 @@
 import Button from "../components/button/Button";
+import { useEffect } from "react";
 
 const PageNotFound = () => {
+  useEffect(() => {
+    document.title = "Page not found";
+  }, []);
+
   return (
     <div className="min-h-screen px-5 text-white bg-black center lg:px-10">
       <div className="flex flex-col items-center justify-between max-w-5xl text-center">

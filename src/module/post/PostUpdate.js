@@ -153,6 +153,10 @@ const PostUpdate = () => {
     []
   );
 
+  useEffect(() => {
+    document.title = "Update post";
+  }, []);
+
   if (!postId) return null;
 
   return (

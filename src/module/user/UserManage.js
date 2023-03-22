@@ -1,8 +1,13 @@
 import UserTable from "./UserTable";
 import DashboardHeading from "../dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
+import { useEffect } from "react";
 
 const UserManage = () => {
+  useEffect(() => {
+    document.title = "User Manage";
+  }, []);
+
   return (
     <div>
       <DashboardHeading title="Users" desc="Manage your user" />
