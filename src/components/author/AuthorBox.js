@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 
@@ -19,18 +20,23 @@ const AuthorBox = ({ userId = "" }) => {
   if (!userId || !user.username) return null;
 
   return (
-    <div className="flex mt-10 mb-20 rounded-3xl bg-grayF3">
-      <div className="w-52 h-52 shrink-0 rounded-3xl">
-        <img
-          src={user?.avatar}
-          alt=""
-          className="object-cover w-full h-full rounded-3xl"
-        />
+    <div className="p-5 mt-10 bg-grayF3 rounded-3xl">
+      <div className="flex items-center gap-5 mb-5">
+        <div className="w-16 h-16">
+          <img
+            src={user?.avatar}
+            alt={user?.fullName}
+            className="object-cover w-full h-full rounded-full"
+          />
+        </div>
+        <div>
+          <h3 className="text-base font-semibold">{user?.fullName}</h3>
+          <Link to={`/author/${user?.username}`} className="block">
+            <p className="text-sm text-gray4b">{user?.username}</p>
+          </Link>
+        </div>
       </div>
-      <div className="flex-1 p-5">
-        <h3 className="mb-3 text-xl font-bold">{user?.fullName}</h3>
-        <p className="text-sm leading-loose">{user?.description}</p>
-      </div>
+      <p>{user?.description}</p>
     </div>
   );
 };

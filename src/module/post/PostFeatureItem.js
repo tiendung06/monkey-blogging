@@ -10,11 +10,11 @@ const PostFeatureItem = ({ data }) => {
   const { category, user } = data;
 
   return (
-    <div className="relative w-full h-40 lg:h-64 rounded-2xl">
-      <PostImage url={data.image} alt="unsplash" className="lg:h-full" />
+    <div className="relative w-full h-52 lg:h-64 rounded-2xl">
+      <PostImage url={data.image} alt={data.title} className="lg:h-full" />
       <div className="absolute inset-0 bg-[rgba(0,0,0,0.75)] opacity-60 mix-blend-multiply rounded-2xl"></div>
-      <div className="absolute inset-0 z-10 p-3 text-white lg:p-5">
-        <div className="flex items-center justify-between mb-4">
+      <div className="absolute inset-0 z-10 p-5 text-white">
+        <div className="flex items-center justify-between mb-3">
           {category?.name && (
             <PostCategory to={category.slug}>{category.name}</PostCategory>
           )}
@@ -24,7 +24,7 @@ const PostFeatureItem = ({ data }) => {
             date={formatDate(data)}
           />
         </div>
-        <PostTitle to={data.slug} size="big">
+        <PostTitle to={data.slug} size="big" className="line-clamp-4">
           {data.title}
         </PostTitle>
       </div>

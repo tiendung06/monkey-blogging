@@ -4,12 +4,12 @@ const HomeBanner = () => {
   return (
     <div className="py-10 mb-10 bg-gradient-to-br from-primary to-secondary">
       <div className="spacing">
-        <div className="flex flex-col items-center justify-between gap-10 banner lg:flex-row">
-          <div className="max-w-2xl text-white banner-content">
-            <h1 className="mb-5 text-2xl font-bold lg:text-4xl banner-heading">
+        <div className="flex flex-col items-center justify-between gap-10 lg:flex-row">
+          <div className="max-w-2xl text-white">
+            <h1 className="mb-5 text-2xl font-bold lg:text-4xl">
               Monkey Blogging
             </h1>
-            <p className="mb-10 text-sm leading-relaxed banner-desc lg:text-base">
+            <p className="mb-10 text-sm leading-relaxed lg:text-base">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Laudantium magnam similique accusantium natus esse facilis!
               Quaerat voluptates possimus dolorem officiis pariatur, repellat,
@@ -23,7 +23,7 @@ const HomeBanner = () => {
               Get started
             </Button>
           </div>
-          <div>
+          <div className="hidden lg:block">
             <img src="/img-banner.png" alt="banner" />
           </div>
         </div>

@@ -11,7 +11,7 @@ const PostCategory = ({
       type={type}
       className={`${
         type === "secondary" ? "bg-white" : "bg-grayF3"
-      } inline-block py-1 px-3 rounded-xl text-gray6B text-xs lg:text-sm font-semibold whitespace-nowrap ${className}`}
+      } inline-block py-1 px-3 rounded-xl text-gray6B text-xs lg:text-sm font-medium whitespace-nowrap ${className}`}
     >
       <Link to={`/category/${to}`} className="block">
         {children}

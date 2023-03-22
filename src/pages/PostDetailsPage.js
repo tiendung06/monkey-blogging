@@ -40,27 +40,25 @@ const PostDetailsPage = () => {
   }, [slug]);
 
   useEffect(() => {
-    document.title = postInfo.title || "Page Not Found";
+    document.title = postInfo.title || "Monkey Blogging";
   }, [postInfo.title]);
 
   const { userInfo } = useAuth();
   const { user } = postInfo;
 
-  if (!slug || !postInfo.title) return <PageNotFound />;
+  if (!slug) return <PageNotFound />;
+  if (!postInfo.title) return null;
 
   return (
     <Layout>
       <div className="spacing">
-        <div className="flex flex-col items-center justify-between my-10 gap-x-10 lg:flex-row">
-          <PostImage
-            url={postInfo.image}
-            className="w-full max-w-2xl lg:h-[460px] rounded-3xl h-auto"
-          />
+        <div className="flex flex-col items-center justify-between my-5 gap-x-10 lg:flex-row">
+          <PostImage url={postInfo.image} className="max-w-2xl lg:h-96" />
           <div className="flex-1 w-full">
-            <PostCategory className="mb-6" to={postInfo.category?.slug}>
+            <PostCategory className="mb-3 lg:mb-5" to={postInfo.category?.slug}>
               {postInfo.category?.name}
             </PostCategory>
-            <h1 className="mb-4 text-2xl font-bold lg:text-3xl">
+            <h1 className="mb-3 text-2xl font-bold !leading-normal lg:text-3xl">
               {postInfo.title}
             </h1>
             <PostMeta authorName={user.fullName} date={formatDate(postInfo)} />
@@ -75,7 +73,7 @@ const PostDetailsPage = () => {
             )}
           </div>
         </div>
-        <div className="max-w-3xl mx-auto my-10 lg:my-20">
+        <div className="max-w-3xl mx-auto my-10">
           <div
             className="entry-content"
             dangerouslySetInnerHTML={{

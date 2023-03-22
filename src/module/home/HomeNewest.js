@@ -43,9 +43,9 @@ const HomeNewest = () => {
     <div className="pb-10 lg:pb-16">
       <div className="spacing">
         <Heading>Latest posts</Heading>
-        <div className="grid items-start grid-cols-1 gap-10 mb-10 lg:grid-cols-2">
+        <div className="grid items-start grid-cols-1 gap-x-5 gap-y-10 lg:grid-cols-2">
           <PostNewestLarge data={first} />
-          <div className="px-3 py-4 lg:px-5 lg:py-7 rounded-2xl bg-[#f3edff]">
+          <div>
             {other.length > 0 &&
               other.map((item) => <PostNewestItem key={v4()} data={item} />)}
           </div>

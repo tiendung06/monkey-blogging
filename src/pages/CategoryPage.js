@@ -40,12 +40,13 @@ const CategoryPage = () => {
   return (
     <Layout>
       <div className="spacing">
-        <div className="pt-10"></div>
-        <Heading>Category {params.slug}</Heading>
-        <div className="grid-layout grid-layout--primary">
-          {posts.map((item) => (
-            <PostItem key={item.id} data={item}></PostItem>
-          ))}
+        <div className="my-5">
+          <Heading>Category {params.slug}</Heading>
+          <div className="grid gap-5 grid-col-1 lg:grid-cols-4">
+            {posts.map((item) => (
+              <PostItem key={item.id} data={item}></PostItem>
+            ))}
+          </div>
         </div>
       </div>
     </Layout>

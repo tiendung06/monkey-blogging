@@ -14,19 +14,21 @@ const PostNewestLarge = ({ data }) => {
         url={data?.image}
         alt=""
         to={data?.slug}
-        className="mb-5 h-[250px] lg:h-[430px] rounded-2xl"
+        className="h-64 lg:h-96 rounded-2xl"
       />
-      <PostCategory to={data?.category?.slug} className="mb-3">
-        {data?.category?.name}
-      </PostCategory>
-      <PostTitle to={data?.slug} size="big" className="mb-5">
+      <div className="flex items-center justify-between mb-3">
+        <PostCategory to={data?.category?.slug}>
+          {data?.category?.name}
+        </PostCategory>
+        <PostMeta
+          to={slugify(data?.user?.username || "", { lower: true })}
+          authorName={data?.user?.fullName}
+          date={formatDate(data)}
+        />
+      </div>
+      <PostTitle to={data?.slug} size="big">
         {data?.title}
       </PostTitle>
-      <PostMeta
-        to={slugify(data?.user?.username || "", { lower: true })}
-        authorName={data?.user?.fullName}
-        date={formatDate(data)}
-      />
     </div>
   );
 };
