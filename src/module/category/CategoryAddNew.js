@@ -6,14 +6,19 @@ import FieldCheckboxes from "../../components/field/FieldCheckboxes";
 import Field from "../../components/field/Field";
 import DashboardHeading from "../../module/dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { useCheckRole } from "../../hooks/useCheckRole";
 import { toast } from "react-toastify";
 import { db } from "../../firebase/firebase-config";
 import { categoryStatus } from "../../utils/constants";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const CategoryAddNew = () => {
+  const accountRole = useCheckRole();
+  const navigate = useNavigate();
+
   const {
     control,
     handleSubmit,
@@ -32,15 +37,12 @@ const CategoryAddNew = () => {
 
   const handleAddNewCategory = async (values) => {
     if (!isValid) return;
-
     const newValues = { ...values };
     newValues.slug = slugify(newValues.name || newValues.slug, {
       lower: true,
     });
-
     newValues.status = Number(newValues.status);
     const colRef = collection(db, "categories");
-
     try {
       await addDoc(colRef, {
         ...newValues,
@@ -60,6 +62,10 @@ const CategoryAddNew = () => {
   };
 
   const watchStatus = watch("status");
+
+  useEffect(() => {
+    if (!accountRole) navigate("/manage/category");
+  }, [accountRole, navigate]);
 
   useEffect(() => {
     document.title = "Add new category";

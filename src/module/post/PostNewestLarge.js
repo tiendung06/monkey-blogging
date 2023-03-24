@@ -14,7 +14,7 @@ const PostNewestLarge = ({ data }) => {
         url={data?.image}
         alt=""
         to={data?.slug}
-        className="h-64 lg:h-96 rounded-2xl"
+        className="h-auto lg:h-80 rounded-2xl"
       />
       <div className="flex items-center justify-between mb-3">
         <PostCategory to={data?.category?.slug}>

@@ -8,6 +8,7 @@ import Button from "../../components/button/Button";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { useCheckRole } from "../../hooks/useCheckRole";
 import { toast } from "react-toastify";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
@@ -27,6 +28,7 @@ const CategoryUpdate = () => {
 
   const [params] = useSearchParams();
   const categoryId = params.get("id");
+  const accountRole = useCheckRole();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,6 +52,10 @@ const CategoryUpdate = () => {
     toast.success("Update category successfully!");
     navigate("/manage/category");
   };
+
+  useEffect(() => {
+    if (!accountRole) navigate("/manage/category");
+  }, [accountRole, navigate]);
 
   useEffect(() => {
     document.title = "Update Category";

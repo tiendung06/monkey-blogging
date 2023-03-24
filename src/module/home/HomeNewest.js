@@ -40,7 +40,7 @@ const HomeNewest = () => {
   const [first, ...other] = posts;
 
   return (
-    <div className="pb-10 lg:pb-16">
+    <section className="mb-10 lg:mb-16">
       <div className="spacing">
         <Heading>Latest posts</Heading>
         <div className="grid items-start grid-cols-1 gap-x-5 gap-y-10 lg:grid-cols-2">
@@ -51,7 +51,7 @@ const HomeNewest = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

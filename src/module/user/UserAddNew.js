@@ -9,14 +9,19 @@ import Field from "../../components/field/Field";
 import DashboardHeading from "../dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
 import { userRole, userStatus } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useCheckRole } from "../../hooks/useCheckRole";
 import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { useEffect } from "react";
 
 const UserAddNew = () => {
+  const accountRole = useCheckRole();
+  const navigate = useNavigate();
+
   const {
     control,
     handleSubmit,
@@ -87,6 +92,12 @@ const UserAddNew = () => {
 
   const watchStatus = watch("status");
   const watchRole = watch("role");
+
+  useEffect(() => {
+    if (!accountRole) {
+      navigate("/manage/user");
+    }
+  }, [accountRole, navigate]);
 
   useEffect(() => {
     document.title = "Add New User";

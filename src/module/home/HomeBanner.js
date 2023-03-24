@@ -2,9 +2,9 @@ import Button from "../../components/button/Button";
 
 const HomeBanner = () => {
   return (
-    <div className="py-10 mb-10 bg-gradient-to-br from-primary to-secondary">
+    <section className="py-10 mb-10 lg:mb-16 bg-gradient-to-br from-primary to-secondary">
       <div className="spacing">
-        <div className="flex flex-col items-center justify-between gap-10 lg:flex-row">
+        <div className="flex items-center justify-between gap-10">
           <div className="max-w-2xl text-white">
             <h1 className="mb-5 text-2xl font-bold lg:text-4xl">
               Monkey Blogging
@@ -28,7 +28,7 @@ const HomeBanner = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

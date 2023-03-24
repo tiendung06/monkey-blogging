@@ -52,9 +52,9 @@ const PostDetailsPage = () => {
   return (
     <Layout>
       <div className="spacing">
-        <div className="flex flex-col items-center justify-between my-5 gap-x-10 lg:flex-row">
-          <PostImage url={postInfo.image} className="max-w-2xl lg:h-96" />
-          <div className="flex-1 w-full">
+        <div className="flex flex-col-reverse items-center justify-between gap-x-10 lg:flex-row">
+          <PostImage url={postInfo.image} className="max-w-2xl mb-0 lg:h-96" />
+          <div className="flex-1 w-full mb-5">
             <PostCategory className="mb-3 lg:mb-5" to={postInfo.category?.slug}>
               {postInfo.category?.name}
             </PostCategory>

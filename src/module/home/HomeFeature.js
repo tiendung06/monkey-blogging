@@ -37,7 +37,7 @@ const HomeFeature = () => {
   if (posts.length <= 0) return null;
 
   return (
-    <div className="pb-10 lg:pb-16">
+    <section className="mb-10 lg:mb-16">
       <div className="spacing">
         <Heading>Featured posts</Heading>
         <div className="grid-layout">
@@ -46,7 +46,7 @@ const HomeFeature = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

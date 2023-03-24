@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useCheckRole } from "../../hooks/useCheckRole";
 import { debounce } from "lodash";
 import { db } from "../../firebase/firebase-config";
 import { categoryStatus } from "../../utils/constants";
@@ -31,13 +32,14 @@ const CategoryManage = () => {
   const [filter, setFilter] = useState(undefined);
   const [lastDoc, setLastDoc] = useState();
   const [total, setTotal] = useState(0);
+  const accountRole = useCheckRole();
+
   const handleLoadMoreCategory = async () => {
     const nextRef = query(
       collection(db, "categories"),
       startAfter(lastDoc || 0),
       limit(CATEGORY_PER_PAGE)
     );
-
     onSnapshot(nextRef, (snapshot) => {
       let results = [];
       snapshot.forEach((doc) => {
@@ -115,9 +117,11 @@ const CategoryManage = () => {
   return (
     <div>
       <DashboardHeading title="Categories" desc="Manage your category">
-        <Button kind="ghost" to="/manage/add-category">
-          Create category
-        </Button>
+        {accountRole && (
+          <Button kind="ghost" to="/manage/add-category">
+            Create category
+          </Button>
+        )}
       </DashboardHeading>
       <div className="flex justify-end mb-10">
         <input
@@ -159,21 +163,26 @@ const CategoryManage = () => {
                     <ActionView
                       onClick={() => navigate(`/category/${category.slug}`)}
                     />
-                    <ActionEdit
-                      onClick={() =>
-                        navigate(`/manage/update-category?id=${category.id}`)
-                      }
-                    />
-                    <ActionDelete
-                      onClick={() => handleDeleteCategory(category.id)}
-                    />
+                    {accountRole && (
+                      <>
+                        <ActionEdit
+                          onClick={() =>
+                            navigate(
+                              `/manage/update-category?id=${category.id}`
+                            )
+                          }
+                        />
+                        <ActionDelete
+                          onClick={() => handleDeleteCategory(category.id)}
+                        />
+                      </>
+                    )}
                   </div>
                 </td>
               </tr>
             ))}
         </tbody>
       </Table>
-
       {total > categoryList.length && (
         <div className="mt-10">
           <Button onClick={handleLoadMoreCategory} className="mx-auto">

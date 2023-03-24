@@ -8,15 +8,19 @@ import FieldCheckboxes from "../../components/field/FieldCheckboxes";
 import Field from "../../components/field/Field";
 import DashboardHeading from "../dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
-import { useSearchParams } from "react-router-dom";
 import { userRole, userStatus } from "../../utils/constants";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { useCheckRole } from "../../hooks/useCheckRole";
 import { toast } from "react-toastify";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase-config";
 
 const UserUpdate = () => {
+  const accountRole = useCheckRole();
+  const navigate = useNavigate();
+
   const {
     control,
     handleSubmit,
@@ -61,6 +65,12 @@ const UserUpdate = () => {
       avatar: "",
     });
   }
+
+  useEffect(() => {
+    if (!accountRole) {
+      navigate("/manage/user");
+    }
+  }, [accountRole, navigate]);
 
   useEffect(() => {
     setImage(imageUrl);

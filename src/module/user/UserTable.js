@@ -11,9 +11,10 @@ import { formatDate } from "../../helper";
 import { db } from "../../firebase/firebase-config";
 import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 
-const UserTable = () => {
+const UserTable = ({ accountRole }) => {
   const [userList, setUserList] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     const colRef = collection(db, "users");
     onSnapshot(colRef, (snapshot) => {
@@ -91,17 +92,19 @@ const UserTable = () => {
           </div>
         </td>
         <td>{user?.username}</td>
-        <td>{user?.email.slice(0, 5) + "..."}</td>
+        <td>{user?.email}</td>
         <td>{renderLabelStatus(Number(user?.status))}</td>
         <td>{renderRoleLabel(Number(user.role))}</td>
-        <td>
-          <div className="flex items-center text-gray-500 gap-x-3">
-            <ActionEdit
-              onClick={() => navigate(`/manage/update-user?id=${user.id}`)}
-            />
-            <ActionDelete onClick={() => handleDeleteUser(user)} />
-          </div>
-        </td>
+        {accountRole && (
+          <td>
+            <div className="flex items-center text-gray-500 gap-x-3">
+              <ActionEdit
+                onClick={() => navigate(`/manage/update-user?id=${user.id}`)}
+              />
+              <ActionDelete onClick={() => handleDeleteUser(user)} />
+            </div>
+          </td>
+        )}
       </tr>
     );
   };
@@ -116,7 +119,7 @@ const UserTable = () => {
           <th>Email address</th>
           <th>Status</th>
           <th>Role</th>
-          <th>Actions</th>
+          {accountRole && <th>Actions</th>}
         </tr>
       </thead>
       <tbody>
