@@ -73,7 +73,7 @@ const PostDetailsPage = () => {
             )}
           </div>
         </div>
-        <div className="max-w-3xl mx-auto my-10">
+        <div className="max-w-3xl mx-auto my-10 lg:mb-20">
           <div
             className="entry-content"
             dangerouslySetInnerHTML={{

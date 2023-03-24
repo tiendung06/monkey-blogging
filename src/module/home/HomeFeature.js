@@ -40,7 +40,7 @@ const HomeFeature = () => {
     <section className="mb-10 lg:mb-16">
       <div className="spacing">
         <Heading>Featured posts</Heading>
-        <div className="grid-layout">
+        <div className="grid gap-5 grid-col-1 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
             <PostFeatureItem key={post.id} data={post} />
           ))}

@@ -9,7 +9,7 @@ const PostNewestLarge = ({ data }) => {
   if (!data.id) return null;
 
   return (
-    <div>
+    <div className="max-w-2xl">
       <PostImage
         url={data?.image}
         alt=""

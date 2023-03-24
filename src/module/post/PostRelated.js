@@ -9,7 +9,7 @@ const PostRelated = ({ categoryId = "" }) => {
   useEffect(() => {
     const docRef = query(
       collection(db, "posts"),
-      where("categoryId", "==", categoryId)
+      where("category.id", "==", categoryId)
     );
     onSnapshot(docRef, (snapshot) => {
       const results = [];
@@ -24,11 +24,11 @@ const PostRelated = ({ categoryId = "" }) => {
   }, [categoryId]);
   if (!categoryId || posts.length <= 0) return null;
   return (
-    <div className="post-related">
+    <div className="mb-10 lg:mb-16">
       <Heading>Bài viết liên quan</Heading>
-      <div className="grid-layout grid-layout--primary">
+      <div className="grid gap-5 grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {posts.map((item) => (
-          <PostItem key={item.id} data={item}></PostItem>
+          <PostItem key={item.id} data={item} />
         ))}
       </div>
     </div>

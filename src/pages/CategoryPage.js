@@ -42,7 +42,7 @@ const CategoryPage = () => {
       <div className="spacing">
         <div className="my-5">
           <Heading>Category {params.slug}</Heading>
-          <div className="grid gap-5 grid-col-1 lg:grid-cols-4">
+          <div className="grid gap-5 grid-col-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {posts.map((item) => (
               <PostItem key={item.id} data={item}></PostItem>
             ))}
