@@ -16,9 +16,15 @@ const InputPasswordToggle = ({ control }) => {
         control={control}
       >
         {!togglePassword ? (
-          <IconEyeClose onClick={() => setTogglePassword(true)}></IconEyeClose>
+          <IconEyeClose
+            className="text-[#84878b]"
+            onClick={() => setTogglePassword(true)}
+          />
         ) : (
-          <IconEyeOpen onClick={() => setTogglePassword(false)}></IconEyeOpen>
+          <IconEyeOpen
+            className="text-[#84878b]"
+            onClick={() => setTogglePassword(false)}
+          />
         )}
       </Input>
     </Fragment>

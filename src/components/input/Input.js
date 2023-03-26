@@ -1,6 +1,13 @@
 import { useController } from "react-hook-form";
 
-const Input = ({ name = "", type = "text", children, control, ...props }) => {
+const Input = ({
+  name = "",
+  type = "text",
+  disabled = false,
+  children,
+  control,
+  ...props
+}) => {
   const { field } = useController({
     control,
     name,
@@ -12,6 +19,7 @@ const Input = ({ name = "", type = "text", children, control, ...props }) => {
       <input
         id={name}
         type={type}
+        disabled={disabled}
         className={`${
           children ? "pr-14" : ""
         } w-full px-5 py-4 rounded-lg text-sm bg-grayLight placeholder:text-[#84878b] font-medium transition-all border border-transparent focus:bg-white focus:border-primary`}

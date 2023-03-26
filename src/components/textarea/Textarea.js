@@ -5,6 +5,7 @@ const Textarea = ({
   type = "text",
   children,
   control,
+  placeholder,
   ...props
 }) => {
   const { field } = useController({
@@ -18,7 +19,8 @@ const Textarea = ({
       <textarea
         id={name}
         type={type}
-        className="w-full px-5 py-4 text-sm text-black transition-all bg-transparent border rounded-lg resize-none border-grayf1 placeholder:text-[#b2b3bd] min-h-[200px]"
+        placeholder={placeholder}
+        className="w-full px-5 py-4 text-sm text-black transition-all border rounded-lg resize-none leading-normal border-transparent focus:bg-white focus:border-primary bg-grayLight placeholder:text-[#84878b] min-h-[200px]"
         {...field}
         {...props}
       />

@@ -8,6 +8,8 @@ import FieldCheckboxes from "../../components/field/FieldCheckboxes";
 import Field from "../../components/field/Field";
 import DashboardHeading from "../dashboard/DashboardHeading";
 import Button from "../../components/button/Button";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { userRole, userStatus } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -17,6 +19,18 @@ import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+
+const schema = yup.object({
+  fullName: yup.string().required("Please enter full name"),
+  email: yup
+    .string()
+    .email("Please enter valid email address")
+    .required("Please enter email address"),
+  password: yup
+    .string()
+    .min(8, "Password must be at least 8 characters or greater")
+    .required("Please enter password"),
+});
 
 const UserAddNew = () => {
   const accountRole = useCheckRole();
@@ -28,12 +42,13 @@ const UserAddNew = () => {
     setValue,
     watch,
     getValues,
-    formState: { isValid, isSubmitting },
+    formState: { isValid, isSubmitting, errors },
     reset,
   } = useForm({
     mode: "onSubmit",
+    resolver: yupResolver(schema),
     defaultValues: {
-      fullname: "",
+      fullName: "",
       email: "",
       password: "",
       username: "",
@@ -57,10 +72,10 @@ const UserAddNew = () => {
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       await addDoc(collection(db, "users"), {
-        fullname: values.fullname,
+        fullName: values.fullName,
         email: values.email,
         password: values.password,
-        username: slugify(values.username || values.fullname, {
+        username: slugify(values.username || values.fullName, {
           lower: true,
           replacement: " ",
           trim: true,
@@ -74,7 +89,7 @@ const UserAddNew = () => {
         `Create new user with email: ${values.email} successfully!`
       );
       reset({
-        fullname: "",
+        fullName: "",
         email: "",
         password: "",
         username: "",
@@ -85,13 +100,26 @@ const UserAddNew = () => {
       });
       handleResetUpload();
     } catch (error) {
-      console.log(error);
-      toast.error("Can not create new user");
+      if (error.message.includes("email-already-in-use")) {
+        toast.error("Email already in use");
+      } else {
+        toast.error("Create user fail!");
+      }
     }
   };
 
   const watchStatus = watch("status");
   const watchRole = watch("role");
+
+  useEffect(() => {
+    const arrErrors = Object.values(errors);
+    if (arrErrors.length > 0) {
+      toast.error(arrErrors[0]?.message, {
+        pauseOnHover: false,
+        delay: 0,
+      });
+    }
+  }, [errors]);
 
   useEffect(() => {
     if (!accountRole) {
@@ -107,7 +135,7 @@ const UserAddNew = () => {
     <div>
       <DashboardHeading title="New user" desc="Add new user to system" />
       <form onSubmit={handleSubmit(handleCreateUser)}>
-        <div className="w-[200px] h-[200px] mx-auto rounded-full mb-10">
+        <div className="mx-auto mb-10 rounded-full w-52 h-52">
           <ImageUpload
             className="!rounded-full h-full"
             onChange={handleSelectImage}
@@ -118,10 +146,10 @@ const UserAddNew = () => {
         </div>
         <div className="form-layout">
           <Field>
-            <Label>Fullname</Label>
+            <Label>Full name</Label>
             <Input
-              name="fullname"
-              placeholder="Enter your fullname"
+              name="fullName"
+              placeholder="Enter your full name"
               control={control}
             />
           </Field>
