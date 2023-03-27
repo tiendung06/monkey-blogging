@@ -20,7 +20,11 @@ const PostNewestItem = ({ data }) => {
           <PostCategory to={data.category.slug}>
             {data.category?.name}
           </PostCategory>
-          <PostMeta authorName={data.user.fullName} date={formatDate(data)} />
+          <PostMeta
+            to={data.user?.id}
+            authorName={data.user.fullName}
+            date={formatDate(data)}
+          />
         </div>
         <PostTitle to={data.slug}>{data.title}</PostTitle>
       </div>

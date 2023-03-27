@@ -6,6 +6,7 @@ const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
+const AuthorPage = lazy(() => import("./pages/AuthorPage"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const DashboardLayout = lazy(() =>
   import("./module/dashboard/DashboardLayout")
@@ -36,6 +37,7 @@ function App() {
           <Route path="/category/:slug" element={<CategoryPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/:slug" element={<PostDetailsPage />} />
+          <Route path="/author/:id" element={<AuthorPage />} />
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/manage/posts" element={<PostManage />} />
