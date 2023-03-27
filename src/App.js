@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/auth-context";
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const DashboardLayout = lazy(() =>
   import("./module/dashboard/DashboardLayout")
@@ -33,6 +34,7 @@ function App() {
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/category/:slug" element={<CategoryPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/:slug" element={<PostDetailsPage />} />
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
