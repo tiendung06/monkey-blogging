@@ -91,7 +91,6 @@ const UserTable = ({ accountRole }) => {
             </div>
           </div>
         </td>
-        <td>{user?.username}</td>
         <td>{user?.email}</td>
         <td>{renderLabelStatus(Number(user?.status))}</td>
         <td>{renderRoleLabel(Number(user.role))}</td>
@@ -115,7 +114,6 @@ const UserTable = ({ accountRole }) => {
         <tr>
           <th>Id</th>
           <th>Info</th>
-          <th>Username</th>
           <th>Email address</th>
           <th>Status</th>
           <th>Role</th>

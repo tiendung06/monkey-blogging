@@ -1,5 +1,4 @@
 import useFirebaseImage from "../../hooks/useFirebaseImage";
-import slugify from "slugify";
 import Radio from "../../components/checkbox/Radio";
 import Label from "../../components/label/Label";
 import Input from "../../components/input/Input";
@@ -19,6 +18,7 @@ import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import Textarea from "../../components/textarea/Textarea";
 
 const schema = yup.object({
   fullName: yup.string().required("Please enter full name"),
@@ -51,7 +51,6 @@ const UserAddNew = () => {
       fullName: "",
       email: "",
       password: "",
-      username: "",
       avatar: "",
       status: userStatus.ACTIVE,
       role: userRole.USER,
@@ -75,11 +74,7 @@ const UserAddNew = () => {
         fullName: values.fullName,
         email: values.email,
         password: values.password,
-        username: slugify(values.username || values.fullName, {
-          lower: true,
-          replacement: " ",
-          trim: true,
-        }),
+        description: values.description,
         avatar: image,
         status: Number(values.status),
         role: Number(values.role),
@@ -92,7 +87,7 @@ const UserAddNew = () => {
         fullName: "",
         email: "",
         password: "",
-        username: "",
+        description: "",
         avatar: "",
         status: userStatus.ACTIVE,
         role: userRole.USER,
@@ -154,22 +149,22 @@ const UserAddNew = () => {
             />
           </Field>
           <Field>
-            <Label>Username</Label>
-            <Input
-              name="username"
-              placeholder="Enter your username"
-              control={control}
-            />
-          </Field>
-        </div>
-        <div className="form-layout">
-          <Field>
             <Label>Email</Label>
             <Input
               name="email"
               placeholder="Enter your email"
               control={control}
               type="email"
+            />
+          </Field>
+        </div>
+        <div className="form-layout">
+          <Field>
+            <Label>Description</Label>
+            <Textarea
+              name="description"
+              control={control}
+              placeholder="Describe yourself here"
             />
           </Field>
           <Field>

@@ -84,7 +84,7 @@ const PostTable = ({ post }) => {
                   <span className="text-gray-500">{post.category?.name}</span>
                 </td>
                 <td>
-                  <span className="text-gray-500">{post.user?.username}</span>
+                  <span className="text-gray-500">{post.user?.fullName}</span>
                 </td>
                 <td>{renderPostStatus(post.status)}</td>
                 <td>

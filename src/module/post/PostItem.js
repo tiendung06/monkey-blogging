@@ -1,4 +1,3 @@
-import slugify from "slugify";
 import PostTitle from "./PostTitle";
 import PostMeta from "./PostMeta";
 import PostImage from "./PostImage";
@@ -16,7 +15,7 @@ const PostItem = ({ data }) => {
           {data.category?.name}
         </PostCategory>
         <PostMeta
-          to={slugify(data.user?.username || "", { lower: true })}
+          to={data.user?.id}
           authorName={data.user?.fullName}
           date={formatDate(data)}
         />

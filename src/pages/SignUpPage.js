@@ -1,4 +1,3 @@
-import slugify from "slugify";
 import Label from "../components/label/Label";
 import InputPasswordToggle from "../components/input/InputPasswordToggle";
 import Input from "../components/input/Input";
@@ -53,7 +52,6 @@ const SignUpPage = () => {
         fullName: values.fullName,
         email: values.email,
         password: values.password,
-        username: slugify(values.fullName, { lower: true }),
         avatar:
           "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
         status: userStatus.ACTIVE,

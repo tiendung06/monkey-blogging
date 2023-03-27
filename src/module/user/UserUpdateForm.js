@@ -94,16 +94,6 @@ const UserUpdateForm = ({ id, role = false }) => {
           />
         </Field>
         <Field>
-          <Label>Username</Label>
-          <Input
-            name="username"
-            placeholder="Enter your username"
-            control={control}
-          />
-        </Field>
-      </div>
-      <div className="form-layout">
-        <Field>
           <Label>Email</Label>
           <Input
             name="email"
@@ -111,6 +101,16 @@ const UserUpdateForm = ({ id, role = false }) => {
             control={control}
             type="email"
             disabled={true}
+          />
+        </Field>
+      </div>
+      <div className="form-layout">
+        <Field>
+          <Label>Description</Label>
+          <Textarea
+            name="description"
+            control={control}
+            placeholder="Describe yourself here"
           />
         </Field>
         <Field>
@@ -181,16 +181,6 @@ const UserUpdateForm = ({ id, role = false }) => {
               User
             </Radio>
           </FieldCheckboxes>
-        </Field>
-      </div>
-      <div className="form-layout">
-        <Field>
-          <Label>Description</Label>
-          <Textarea
-            name="description"
-            control={control}
-            placeholder="Describe yourself here"
-          />
         </Field>
       </div>
       <Button
