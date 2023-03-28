@@ -1,4 +1,5 @@
 import useFirebaseImage from "../../hooks/useFirebaseImage";
+import Textarea from "../../components/textarea/Textarea";
 import Radio from "../../components/checkbox/Radio";
 import Label from "../../components/label/Label";
 import Input from "../../components/input/Input";
@@ -15,10 +16,9 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useCheckRole } from "../../hooks/useCheckRole";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase-config";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import Textarea from "../../components/textarea/Textarea";
 
 const schema = yup.object({
   fullName: yup.string().required("Please enter full name"),
@@ -70,14 +70,22 @@ const UserAddNew = () => {
     if (!isValid) return;
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
-      await addDoc(collection(db, "users"), {
+      await updateProfile(auth.currentUser, {
+        displayName: values.fullName,
+        photoURL:
+          image ||
+          "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+      });
+
+      await setDoc(doc(db, "users", auth.currentUser.uid), {
         fullName: values.fullName,
         email: values.email,
         password: values.password,
-        description: values.description,
-        avatar: image,
-        status: Number(values.status),
-        role: Number(values.role),
+        avatar:
+          image ||
+          "https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+        status: userStatus.ACTIVE,
+        role: userRole.USER,
         createdAt: serverTimestamp(),
       });
       toast.success(
