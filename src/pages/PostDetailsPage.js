@@ -1,6 +1,7 @@
 import PostRelated from "../module/post/PostRelated";
 import PostMeta from "../module/post/PostMeta";
 import PostImage from "../module/post/PostImage";
+import PostComment from "../module/post/PostComment";
 import PostCategory from "../module/post/PostCategory";
 import PageNotFound from "./PageNotFound";
 import Layout from "../components/layout/Layout";
@@ -79,8 +80,9 @@ const PostDetailsPage = () => {
             dangerouslySetInnerHTML={{
               __html: postInfo.content || "",
             }}
-          ></div>
+          />
           <AuthorBox userId={user.id} />
+          <PostComment id={postInfo.id} />
         </div>
         <PostRelated categoryId={postInfo?.category?.id} />
       </div>
