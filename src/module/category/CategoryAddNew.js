@@ -68,7 +68,7 @@ const CategoryAddNew = () => {
   }, [accountRole, navigate]);
 
   useEffect(() => {
-    document.title = "Add new category";
+    document.title = "Tạo danh mục";
   }, []);
 
   return (
@@ -77,7 +77,7 @@ const CategoryAddNew = () => {
       <form onSubmit={handleSubmit(handleAddNewCategory)} autoComplete="off">
         <div className="form-layout">
           <Field>
-            <Label>Name</Label>
+            <Label>Tên danh mục</Label>
             <Input
               control={control}
               name="name"
@@ -86,7 +86,7 @@ const CategoryAddNew = () => {
             />
           </Field>
           <Field>
-            <Label>Slug</Label>
+            <Label>Đường dẫn</Label>
             <Input
               control={control}
               name="slug"
@@ -96,7 +96,7 @@ const CategoryAddNew = () => {
         </div>
         <div className="form-layout">
           <Field>
-            <Label>Status</Label>
+            <Label>Trạng thái</Label>
             <FieldCheckboxes>
               <Radio
                 name="status"
@@ -104,7 +104,7 @@ const CategoryAddNew = () => {
                 checked={Number(watchStatus) === categoryStatus.APPROVED}
                 value={categoryStatus.APPROVED}
               >
-                Approved
+                Chấp thuận
               </Radio>
               <Radio
                 name="status"
@@ -112,7 +112,7 @@ const CategoryAddNew = () => {
                 checked={Number(watchStatus) === categoryStatus.UNAPPROVED}
                 value={categoryStatus.UNAPPROVED}
               >
-                Unapproved
+                Không chấp thuận
               </Radio>
             </FieldCheckboxes>
           </Field>
@@ -123,7 +123,7 @@ const CategoryAddNew = () => {
           kind="primary"
           isLoading={isSubmitting}
         >
-          Add new category
+          Thêm danh mục
         </Button>
       </form>
     </div>

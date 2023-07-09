@@ -43,7 +43,7 @@ const HomeNewest = () => {
     <section className="mb-10 lg:mb-16">
       <div className="spacing">
         <Heading>Latest posts</Heading>
-        <div className="grid items-start grid-cols-1 gap-x-5 gap-y-10 lg:grid-cols-2">
+        <div className="grid items-start grid-cols-1 gap-10 gap-y-10 lg:grid-cols-2">
           <PostNewestLarge data={first} />
           <div>
             {other.length > 0 &&

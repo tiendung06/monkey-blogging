@@ -8,9 +8,9 @@ const Header = () => {
   return (
     <HeaderLayout>
       {!userInfo ? (
-        <Button to="/sign-in">Login</Button>
+        <Button to="/sign-in">Đăng nhập</Button>
       ) : (
-        <Button to="/dashboard">Dashboard</Button>
+        <Button to="/dashboard">Bảng điều khiển</Button>
       )}
       {userInfo && (
         <Link to="/profile">

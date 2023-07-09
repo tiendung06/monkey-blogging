@@ -29,7 +29,7 @@ const ImageUpload = ({
             alt="upload-img"
             className="max-w-[80px] mb-5"
           />
-          <p className="font-semibold">Choose photo</p>
+          <p className="font-semibold">Chọn hình ảnh</p>
         </div>
       )}
       {image && (

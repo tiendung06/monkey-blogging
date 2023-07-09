@@ -53,16 +53,19 @@ const PostDetailsPage = () => {
   return (
     <Layout>
       <div className="spacing">
-        <div className="flex flex-col-reverse items-center justify-between gap-x-10 lg:flex-row">
-          <PostImage url={postInfo.image} className="max-w-2xl mb-0 lg:h-96" />
-          <div className="flex-1 w-full mb-5">
+        <div className="max-w-3xl mx-auto">
+          <div className="w-full mb-5">
             <PostCategory className="mb-3 lg:mb-5" to={postInfo.category?.slug}>
               {postInfo.category?.name}
             </PostCategory>
             <h1 className="mb-3 text-2xl font-bold !leading-normal lg:text-3xl">
               {postInfo.title}
             </h1>
-            <PostMeta authorName={user.fullName} date={formatDate(postInfo)} />
+            <PostMeta
+              authorName={user.fullName}
+              date={formatDate(postInfo)}
+              to={postInfo.user.id}
+            />
             {userInfo?.role === (userRole.ADMIN || userRole.MOD) && (
               <Button
                 kind="ghost"
@@ -73,6 +76,7 @@ const PostDetailsPage = () => {
               </Button>
             )}
           </div>
+          <PostImage url={postInfo.image} className="w-full mb-0 lg:h-96" />
         </div>
         <div className="max-w-3xl mx-auto my-10 lg:mb-20">
           <div

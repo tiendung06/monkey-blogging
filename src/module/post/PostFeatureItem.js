@@ -9,9 +9,9 @@ const PostFeatureItem = ({ data }) => {
   const { category, user } = data;
 
   return (
-    <div className="relative w-full h-52 lg:h-64 rounded-2xl">
+    <div className="relative w-full overflow-hidden h-52 lg:h-64 rounded-2xl">
       <PostImage url={data.image} alt={data.title} className="lg:h-full" />
-      <div className="absolute inset-0 bg-[rgba(0,0,0,0.75)] opacity-60 mix-blend-multiply rounded-2xl"></div>
+      <div className="absolute inset-0 bg-[rgba(0,0,0,0.75)] opacity-60 mix-blend-multiply rounded-2xl" />
       <div className="absolute inset-0 z-10 p-5 text-white">
         <div className="flex items-center justify-between mb-3">
           {category?.name && (

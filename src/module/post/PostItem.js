@@ -9,7 +9,12 @@ const PostItem = ({ data }) => {
 
   return (
     <div>
-      <PostImage url={data.image} alt="" to={data.slug} />
+      <PostImage
+        url={data.image}
+        alt=""
+        to={data.slug}
+        className="min-h-[208px] mb-5"
+      />
       <div className="flex items-center justify-between mb-3">
         <PostCategory to={data.category?.slug}>
           {data.category?.name}

@@ -8,12 +8,12 @@ const PostNewestLarge = ({ data }) => {
   if (!data.id) return null;
 
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-2xl lg:max-w-full">
       <PostImage
         url={data?.image}
         alt=""
         to={data?.slug}
-        className="h-auto lg:h-80 rounded-2xl"
+        className="h-auto mb-5 lg:h-80 rounded-2xl"
       />
       <div className="flex items-center justify-between mb-3">
         <PostCategory to={data?.category?.slug}>

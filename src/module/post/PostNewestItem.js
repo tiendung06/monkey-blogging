@@ -13,7 +13,7 @@ const PostNewestItem = ({ data }) => {
         url={data.image}
         alt={data.title}
         to={data.slug}
-        className="!w-40 !mb-0 !h-28 rounded-xl"
+        className="!w-44 !h-28 rounded-xl"
       />
       <div className="flex-1 w-full">
         <div className="flex items-center justify-between mb-3">
